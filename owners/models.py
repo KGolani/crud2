@@ -2,15 +2,18 @@ from pyexpat import model
 from django.db import models
 
 class Owner(models.Model):
-    name = models.CharField(max_length=45)
+    name  = models.CharField(max_length=45)
     email = models.CharField(max_length=300)
-    age = models.IntegerField()
+    age   = models.IntegerField()
 
     class Meta:
         db_table = 'owners'
 
 class Dog(models.Model):
-    Owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
-    name = models.CharField(max_length=45)
-    age = models.IntegerField()
+    owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+    name  = models.CharField(max_length=45)
+    age   = models.IntegerField()
+
+    class Meta:
+        db_table = 'dogs'
 # Create your models here.
